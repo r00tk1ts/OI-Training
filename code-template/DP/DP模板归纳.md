@@ -32,6 +32,6 @@ return dp[target]
 ### 问题收集
 
 - LeetCode:
-  - 64
-  - 120
-  
+  - [middle]64
+  - [middle]120
+  - [hard]174

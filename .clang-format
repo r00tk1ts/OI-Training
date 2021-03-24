@@ -1,0 +1,35 @@
+Language: Cpp
+BasedOnStyle: Google
+ColumnLimit: 100
+SortIncludes: true
+IncludeBlocks: Regroup
+
+DerivePointerAlignment: false
+PointerAlignment: Left
+SpacesBeforeTrailingComments: 2
+FixNamespaceComments: true
+AlignTrailingComments: true
+MaxEmptyLinesToKeep: 1
+AlignEscapedNewlines: Left
+CompactNamespaces: false
+BinPackParameters: false
+BinPackArguments: false
+ReflowComments: true
+AllowShortFunctionsOnASingleLine: Empty
+CommentPragmas: '\{\{[[:space:]]*[A-Z0-9_]+(BLOCK|SLOT)_(BEGIN|END)'
+IncludeCategories:
+  # C Headers in <> with extension.
+  - Regex: '<(tgmath|sgtty|fstab|syslog|fts|netinet/tcp|netiucv\/iucv|argp|netrom\/netrom|features|byteswap|stddef|stdarg|iconv|utmpx|strings|stdatomic|thread_db|math|stdalign|pty|iso646|limits|poll|resolv|gconv|netipx\/ipx|complex|nfs\/nfs|link|elf|execinfo|ftw|shadow|getopt|unistd|cpio|libintl|netrose\/rose|fmtmsg|fpu_control|gnu-versions|stdnoreturn|wctype|time|ulimit|ctype|gshadow|values|arpa\/inet|netdb|net\/if|a.out|netash\/ash|utime|stdlib|mcheck|printf|envz|re_comp|netinet\/in|aio|stdc-predef|termio|grp|ttyent|sched|trace|termios|utmp|obstack|dirent|netax25\/ax25|netatalk\/at|pthread|signal|fnmatch|string|wordexp|err|ifaddrs|uchar|sysexits|setjmp|ar|syscall|ndbm|glob|ucontext|netpacket\/packet|langinfo|regex|lastlog|dlfcn|alloca|memory|monetary|inttypes|regexp|xlocale|aliases|ieee754|emmintrin|malloc|stab|mntent|fenv|endian|stdio_ext|float|ustat|nss|wait|arm_neon|neteconet\/ec|stropts|stdbool|pwd|stdio|wchar|locale|errno|nl_types|libgen|threads|search|stdint|libio|crypt|xmmintin|argz|tar|semaphore|spawn|assert|mqueue|fcntl|paths|error).h>'
+    Priority: 1
+  # Headers in <> without extension.
+  - Regex: '<([A-Za-z0-9\/-_])+>'
+    Priority: 2
+  # Headers in <> from specific external libraries.
+  - Regex: '<(boost|google|gtest|gmock|gflags|tensorflow|isl|json|rapidjson)/.*>'
+    Priority: 3
+  # Headers in "" from specific external libraries.
+  - Regex: '^(<|"(trpc|servant|util|wsd|dcache|yaml-cpp|boost|google|gtest|gmock|gflags|tensorflow|isl|json|rapidjson|rondaserving_framework)/)'
+    Priority: 4
+  # Headers in "" with extension.
+  - Regex: '"([A-Za-z0-9.\/-_])+"'
+    Priority: 5

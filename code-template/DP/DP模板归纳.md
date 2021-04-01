@@ -32,7 +32,10 @@ return dp[target]
 ### 问题收集
 
 - LeetCode:
-  - [middle]64
-  - [middle]120
-  - [hard]174
-  - [middle]221
+  - [Medium]64
+  - [Medium]120
+  - [Hard]174
+  - [Medium]221
+  - [Medium]279
+  - [Medium]332
+  - [Medium]474

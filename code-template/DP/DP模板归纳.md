@@ -41,3 +41,7 @@ return dp[target]
   - [Medium]474
   - [Medium]650
   - [Easy]746
+  - [Hard]871
+  - [Medium]931
+  - [Medium]983
+  - [Hard]1240

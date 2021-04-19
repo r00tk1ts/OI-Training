@@ -5,48 +5,35 @@ using namespace std;
 class Solution {
  public:
   int minSwap(vector<int>& A, vector<int>& B) {
-    vector<int> dp(A.size() + 1);
-    for (int pos = 1; pos < A.size(); ++pos) {
-      if (A[pos] > A[pos - 1] && B[pos] > B[pos - 1]) {
-        dp[0]++;
-      } else {
-        break;
+    int n = A.size();
+    // 思路:
+    // 1维0表示不交换A[i]和B[i]，1表示交换A[i]和B[i]
+    // dp[0/1][i]表示交换或不交换A[i]和B[i]时，保证A[0~i]和B[0~i]递增的最少累计交换次数
+    // 随着idx的前进，我们只需要处理两种情况（可同时出现）：
+    // 1. A[i-1] < A[i] && B[i-1] < B[i]
+    // 2. A[i-1] < B[i] && B[i-1] < A[i]
+    // case 1:
+    // 如果交换A[i]和B[i]，那么A[i-1]和B[i-1]也要交换才能保证递增，此时dp[1][i] = dp[1][i-1] + 1
+    // 如果不交换A[i]和b[i]，那么dp[0][i] = dp[0][i-1]
+    // case 2:
+    // 如果交换A[i]和B[i]，那么A[i-1]和B[i-1]就不能交换才能保证递增，此时dp[1][i] = dp[0][i-1] + 1
+    // 如果不交换A[i]和B[i]，那么A[i-1]和B[i-1]就必须交换来保证递增，此时dp[0][i] = dp[1][i-1]
+    //
+    // case1和case2对dp[0/1][i]的结果取最小值
+    vector<vector<int>> dp(2, vector<int>(n));
+    dp[0][0] = 0, dp[1][0] = 1;
+    for (int i = 1; i < n; ++i) {
+      dp[0][i] = dp[1][i] = n;
+      if (A[i - 1] < A[i] && B[i - 1] < B[i]) {
+        dp[1][i] = dp[1][i - 1] + 1;
+        dp[0][i] = dp[0][i - 1];
+      }
+      if (A[i - 1] < B[i] && B[i - 1] < A[i]) {
+        dp[1][i] = min(dp[1][i], dp[0][i - 1] + 1);
+        dp[0][i] = min(dp[0][i], dp[1][i - 1]);
       }
     }
-    helper(A, B, 0, dp[0], dp);
-    for (int i = 0; i < dp.size(); ++i) {
-      if (dp[i] == A.size() - 1) return i;
-    }
-    return -1;
-  }
-  bool helper(vector<int>& A, vector<int>& B, int cnt, int idx, vector<int>& dp) {
-    if (cnt > A.size() / 2) return false;
-    if (idx == A.size() - 1) {
-      dp[cnt] = idx;
-      return true;
-    }
-    int pos = idx + 1;
-    for (; pos < A.size(); ++pos) {
-      if (A[pos] <= A[pos - 1] || B[pos] <= B[pos - 1]) {
-        break;
-      }
-    }
-    idx = pos - 1;
-    dp[cnt] = max(dp[cnt], idx);
-    if (idx == A.size() - 1) {
-      return true;
-    }
-    bool flag = false;
-    if (idx >= 1) {
-      swap(A[idx - 1], B[idx - 1]);
-      flag |= helper(A, B, cnt + 1, idx + 1, dp);
-      swap(A[idx - 1], B[idx - 1]);
-    }
-    swap(A[idx], B[idx]);
-    flag |= helper(A, B, cnt + 1, idx + 1, dp);
-    swap(A[idx], B[idx]);
-
-    return flag;
+    return min(dp[0][n - 1], dp[1][n - 1]);
   }
 };
 

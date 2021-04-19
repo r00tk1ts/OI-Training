@@ -86,3 +86,6 @@ return dp[target]
   - [Medium]688
   - [Medium]790
   - [Medium]801
+  - [Medium]808
+  - [Medium]935
+  - [Medium]1155

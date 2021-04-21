@@ -75,9 +75,9 @@ return dp[target]
 ### 问题收集
 
 - LeetCode:
+  - [Easy]70
   - [Medium]62
   - [Medium]63
-  - [Easy]70
   - [Medium]377
   - [Medium]416
   - [Medium]494
@@ -89,3 +89,38 @@ return dp[target]
   - [Medium]808
   - [Medium]935
   - [Medium]1155
+  - [Hard]1220
+  - [Hard]1223
+  - [Hard]1269
+
+## 合并间隔类
+
+### 问题类型
+给定一个数字集合，考虑当前数字从左侧和右侧可获得的最佳数值，来找到问题的最佳解决方案。
+
+### 解决套路
+找到每个间隔的所有最佳解决方案，并返回最佳答案。
+
+状态转移方程：
+
+```
+// from i to j
+dp[i][j] = dp[i][k] + result[k] + dp[k+1][j]
+```
+
+### 代码模板
+
+```cpp
+for(int l = 1; l<n; l++) {
+   for(int i = 0; i<n-l; i++) {
+       int j = i+l;
+       for(int k = i; k<j; k++) {
+           dp[i][j] = max(dp[i][j], dp[i][k] + result[k] + dp[k+1][j]);
+       }
+   }
+}
+ 
+return dp[0][n-1]
+```
+
+### 问题收集

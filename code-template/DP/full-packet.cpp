@@ -56,9 +56,9 @@ int max_weight_v3(const vector<item>& items, int weight) {
 
 int main() {
 #if defined(LOCAL) || defined(DEBUG)
-    freopen("in.in", "r", stdin);
+    freopen("in.txt", "r", stdin);
 #ifndef DEBUG
-    freopen("out.out", "w", stdout);
+    freopen("out.txt", "w", stdout);
     auto c1 = chrono::high_resolution_clock::now();
 #endif
 #endif

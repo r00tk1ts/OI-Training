@@ -9,6 +9,8 @@
 3. `cd`到`${problem}`目录下，有4个文件，in.txt用于填写输入，out.txt填写输出，${problem}.cpp用于写题，${problem}.md用来记录题、写writeup或者思路。
 4. shift+command+b(Mac OS)或者ctrl+shift+b(Windows)编译，F5可单步调试。
 
+## 板子
+code-template下有热乎的各种板子，一定要熟读且倒背如流，持续进货中。。。
 
 ## 附录
 ### Mac OS配置

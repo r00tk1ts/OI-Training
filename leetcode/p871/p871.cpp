@@ -7,7 +7,7 @@ class Solution {
   int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
     // dp[i]表示加i次油所能走得最远的距离
     // 我们需要找到最小的i，使得dp[i] >= target
-    vector<long> dp(stations.size() + 1);
+    vector<long long> dp(stations.size() + 1);
     dp[0] = startFuel;
     for (int i = 0; i < stations.size(); ++i) {
       for (int j = i; j >= 0; --j) {
